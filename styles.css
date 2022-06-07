@@ -16,3 +16,7 @@
   background-color: blueviolet;
   margin: 2px;
 }
+
+.hovered {
+  background-color: lime;
+}

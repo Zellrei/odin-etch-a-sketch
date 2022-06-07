@@ -11,4 +11,12 @@ function initialize (size) {
     console.log("append child");
   }
   
+  const squares = document.querySelectorAll('.square-div');
+  
+  squares.forEach(function (square) {square.addEventListener('mouseover', () => {
+    square.classList.toggle('hovered')
+    });
+  });
+
 }
+
