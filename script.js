@@ -1,14 +1,25 @@
-initialize(16);
+initialize(20);
 
 function initialize (size) {
+  const btnStart = document.getElementById('btn-start');
+  let value = size;
+  btnStart.addEventListener('click', () => {
+    
+    value = Number(window.prompt("Grid size ?", "16")); 
+    clearCanvas();
+    if (value > 100) {value = 100};
+    startGame (value);
+  });
+}    
+  
+function startGame (size) {
   const container = document.querySelector('#canvas-container');
+  
 
   for(i = 0; i < size; i++) {
     const content = document.createElement('div');
     content.classList.add('flex-column');
     container.appendChild(content);
-    console.log("append columns");
-    
   }
 
   const flexColumns = document.querySelectorAll('.flex-column');
@@ -17,7 +28,6 @@ function initialize (size) {
       const contentSquares = document.createElement('div');
       contentSquares.classList.add('square-div');
       flexColumns[i].appendChild(contentSquares);
-      console.log("append child to columns");
     }
 
   }
@@ -28,4 +38,11 @@ function initialize (size) {
     });
   });
 
+}
+
+function clearCanvas () {
+  const container = document.getElementById("canvas-container");
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
 }
