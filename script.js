@@ -34,7 +34,23 @@ function startGame (size) {
   
   const squares = document.querySelectorAll('.square-div');
   squares.forEach(function (square) {square.addEventListener('mouseover', () => {
-    square.classList.toggle('hovered')
+
+    if (!square.classList.contains('colored')) {
+      let rgbColorRed = Math.floor(Math.random() * 255) + 1;
+      let rgbColorGreen = Math.floor(Math.random() * 255) + 1;
+      let rgbColorBlue = Math.floor(Math.random() * 255) + 1;
+      square.setAttribute('style', `background-color : rgb(${rgbColorRed}, ${rgbColorGreen}, ${rgbColorBlue})`);
+      square.classList.add('colored');
+      
+    } else {
+      let squareColor = square.style.backgroundColor;
+      let squareColorArr = squareColor.slice(
+        squareColor.indexOf("(") + 1, 
+        squareColor.indexOf(")")
+    ).split(", ");
+      square.setAttribute('style', `background-color : rgb(${squareColorArr[0]*0.9}, ${squareColorArr[1]*0.9}, ${squareColorArr[2]*0.9})`);
+
+    }
     });
   });
 
